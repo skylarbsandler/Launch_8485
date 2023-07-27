@@ -70,5 +70,18 @@ namespace Tourism.Controllers
 
             return Redirect("/states");
         }
+
+        // DELETE (via Post): /Movies/Delete/:id
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var state = _context.States.Find(id);
+
+            _context.States.Remove(state);
+            _context.SaveChanges();
+
+            return RedirectToAction("index");
+        }
     }
 }
+
